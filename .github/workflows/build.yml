@@ -1,0 +1,18 @@
+name: Build C code
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build
+        run: gcc main.c -o solver -lm
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: solver
+          path: solver
